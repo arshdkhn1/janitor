@@ -336,8 +336,67 @@ hostAPI.get('/version', {
   }]
 });
 
+hostAPI.post({
+  title: 'Create a new container',
+  description: 'Create a new container',
+
+  handler ({ user, query }, response) {
+    if (!user) {
+      response.statusCode = 403; // Forbidden
+      response.json({ error: 'Unauthorized' }, null, 2);
+      return;
+    }
+
+    machines.spawn(user, query.project, error => {
+      if (error) {
+        log('[fail] creating a new container', error);
+        response.statusCode = 500; // Internal Error
+        response.json({ error: 'Could not create new container.' });
+        return;
+      }
+      response.end();
+    });
+  }
+});
+
 // API sub-resource to manage a single container on a cluster host.
 const containerAPI = hostAPI.api('/:container', 'Containers');
+
+containerAPI.delete({
+  title: 'Delete a specified container',
+  description: 'Delete a specified container',
+  
+  handler ({ user, query }, response) {
+    const { container } = query;
+    if (!user) {
+      response.statusCode = 403; // Forbidden
+      response.json({ error: 'Unauthorized' }, null, 2);
+      return;
+    }
+    
+    if (container.length < 16 || !/^[0-9a-f]+$/.test(container)) {
+      response.statusCode = 400; // Bad Request
+      response.json({ error: 'Invalid container ID' }, null, 2);
+      return;
+    }
+
+    const { hostname } = query;
+    const machine = machines.getMachineByContainer(user, hostname, container);
+    if (!machine) {
+      response.statusCode = 404;
+      response.json({ error: 'Container not found' }, null, 2);
+      return;
+    }
+
+    machines.destroy(user, data.project, machine, error => {
+      if (error) {
+        end({ status: 'error', message: String(error) });
+        return;
+      }
+      end({ status: 'success' });
+    });
+  }
+})
 
 containerAPI.patch({
   title: 'Update a container',
