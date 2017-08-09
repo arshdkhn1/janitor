@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="application-name" content="The Janitor">
+    <meta name="theme-color" content="#333">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> {{= title in html}}{{if title then {{ • }}}}The Janitor </title>
+    <link href="/manifest.json" rel="manifest">
+    <link href="/css/janitor.new.css" rel="stylesheet">
+    <link href="/img/janitor.svg" rel="icon" sizes="any" type="image/svg+xml">
+  </head>
+  <body>
+    <header class="navbar" role="navigation">
+      <a class="navbar-brand" href="/">
+        <img src="/img/janitor.svg" alt="Janitor Logo">
+        <span>The Janitor</span>
+      </a>
+      <ul class="float-right">{{if user then {{
+        <li>
+          <a href="/projects/">
+            <i class="icon projects white"></i>
+            Projects
+          </a>
+        </li>
+        <li>
+          <a href="/containers/">
+            <i class="icon containers white"></i>
+            Containers
+          </a>
+        </li>
+        <li>
+          <a href="/settings/">
+            <i class="icon settings white"></i>
+            Settings
+          </a>
+        </li>
+        <li>
+          <a href="/logout">
+            <i class="icon signout white"></i>
+            Sign out
+          </a>
+        </li>}} else {{
+        <li>
+          <a href="/login">
+            <i class="icon signin"></i>
+            Sign in
+          </a>
+        </li>}}}}
+      </ul>
+    </header>

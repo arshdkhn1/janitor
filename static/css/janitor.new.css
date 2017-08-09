@@ -1,0 +1,363 @@
+/* General */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* Use github's list of system fonts */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.gray-text {
+  color: #737373;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.container {
+  margin: 0 10vw;
+}
+
+/* Buttons */
+
+.btn {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 2px;
+  background: #ededf0;
+  padding: 4px 8px;
+  color: #0c0c0d;
+  text-decoration: none;
+  font: inherit;
+}
+
+.btn:hover {
+  background: #d7d7db;
+}
+
+.btn:hover:active {
+  background: #b1b1b3;
+}
+
+.btn-primary {
+  background: #0a84ff;
+  color: #f9f9fa;
+}
+
+.btn-primary:hover {
+  background: #0060df;
+}
+
+.btn-primary:hover:active {
+  background: #003eaa;
+}
+
+.btn-error {
+  background: #ff0039;
+  color: #f9f9fa;
+}
+
+.btn-error:hover {
+  background: #d70022;
+}
+
+.btn-error:hover:active {
+  background: #a4000f;
+}
+
+/* Navigation bar */
+
+.navbar {
+  background: #38383d;
+  color: #f9f9fa;
+  overflow: auto;
+  padding: 10px;
+  z-index: 999;
+}
+
+.navbar-brand {
+  text-decoration: none;
+}
+
+.navbar > *,
+.navbar-brand > * {
+  vertical-align: middle;
+}
+
+.navbar-brand img {
+  filter: invert(1);
+  width: 32px;
+  height: 32px;
+}
+.navbar ul,
+.navbar ul li,
+.navbar ul li a,
+.navbar-brand {
+  list-style: none;
+  color: inherit;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  padding: 0 5px;
+}
+
+.navbar ul li a:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 60px;
+  }
+
+  .navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    height: 60px;
+  }
+  
+  .navbar-brand {
+    display: none;
+  }
+  
+  .navbar ul {
+    float: none;
+  }
+
+  .navbar ul .icon {
+    display: block;
+  }
+
+  .navbar ul li a {
+    text-align: center;
+  }
+}
+
+@media (min-width: 769px) {
+  .navbar ul .icon {
+    display: none;
+  }
+}
+
+/* Footer */
+
+.footer {
+  background: #ededf0;
+  overflow: auto;
+}
+
+.footer ul {
+  margin: 10px 0;
+}
+
+.footer ul, .footer li {
+  list-style: none;
+  display: inline-block;
+}
+
+.footer ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (max-width: 768px) {
+  .footer ul, .footer li {
+    display: block;
+    float: none;
+  }
+}
+
+/* Tabs */
+
+.tab-nav, .tab-nav li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tab-nav li {
+  display: inline-block;
+  margin: 0 1em;
+}
+
+.tab-nav li a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: .5em 0;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  height: 100%;
+  vertical-align: bottom;
+}
+.tab-nav li a::after {
+  content: "";
+  transition: transform 1s cubic-bezier(.07,.95,0,1);
+  transform: scale(0);
+  display: block;
+  background: #0a84ff;
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;  
+}
+
+.tab-nav li.selected a {
+  color: #0a84ff;
+}
+.tab-nav li.selected a::after {
+  transform: none;
+}
+
+.tab-panel {
+  padding: 1em;
+}
+.tab-panel iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.tab-panels .tab-panel:not(.selected) {
+  display: none;
+}
+
+/* Panels */
+
+.panel {
+  border: 1px solid rgba(0,0,0,0.1);
+  margin: 20px 0;
+  border-radius: 2px;
+}
+
+.panel-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 5px;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #ededf0;
+  padding: 5px;
+}
+
+.panel-heading > * {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+/* Status icons */
+
+.status-icon {
+  border-radius: 100%;
+  border: 1px solid rgba(0,0,0,0.1);
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+}
+
+.status-icon.primary {
+  background: #0a84ff;
+}
+
+.status-icon.success {
+  background: #30e60b;
+}
+
+.status-icon.error {
+  background: #ff0039;
+}
+
+.status-icon.warning {
+  background: #ff9400;
+}
+
+/* Editable labels */
+
+.editable-value > * {
+  margin: 0;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.editable-label:not(.editing) .editable-editor,
+.editable-label.editing .editable-value {
+  display: none;
+}
+
+.editable-editor {
+  width: 100%;
+}
+
+.editable-toggle {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Alerts */
+
+.alert {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.alert.alert-warning {
+  background: #ffe900;
+}
+
+/* Icons */
+
+.icon::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.icon.white::before {
+  filter: invert(1);
+}
+
+.icon.projects::before {
+  background-image: url(http://design.firefox.com/icons/icons/new/topsites-16.svg);
+}
+
+.icon.containers::before {
+  background-image: url(http://design.firefox.com/icons/icons/new/device-desktop-16.svg);
+}
+
+.icon.settings::before {
+  background-image: url(http://design.firefox.com/icons/icons/general/preferences-16-macos.svg);
+}
+.icon.delete::before {
+  background-image: url(http://design.firefox.com/icons/icons/new/delete-16.svg);
+}
+

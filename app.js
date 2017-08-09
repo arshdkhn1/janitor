@@ -212,7 +212,17 @@ boot.executeInParallel([
       return;
     }
 
-    routes.contributionsPage(query.res, user);
+    routes.containersPage(query.res, user);
+  });
+
+  app.route(/^\/containers\/?$/, (data, match, end, query) => {
+    const { user } = query.req;
+    if (!user) {
+      routes.loginPage(query.res);
+      return;
+    }
+
+    routes.containersPage(query.res, user);
   });
 
   // User notifications.
