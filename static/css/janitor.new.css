@@ -321,9 +321,21 @@ input.text-input:focus {
   outline: 0;
 }
 
-::placeholder,
-::-ms-input-placeholder,
-::-moz-placeholder,
+::placeholder {
+  opacity: 1;
+  color: var(--fg-color-light);
+}
+
+::-ms-input-placeholder {
+  opacity: 1;
+  color: var(--fg-color-light);
+}
+
+::-moz-placeholder {
+  opacity: 1;
+  color: var(--fg-color-light);
+}
+
 ::-webkit-input-placeholder {
   opacity: 1;
   color: var(--fg-color-light);
