@@ -1,0 +1,31 @@
+    <section class="projects">
+      <div class="container">
+        <h2 class="text-center">Contribute to incredible software</h2>
+        <h4 class="text-center">In just a few clicks, enter a fully-functional development environment. Yes, it's that easy.</h4>
+        <div class="row">{{
+          for (let id in projects) {
+            let project = projects[id];
+          }}
+          <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default panel-project">
+              <div class="panel-heading">
+                <img class="project-icon" src="{{= project.icon in xmlattr}}" alt="{{= project.name in xmlattr}} Logo">
+              </div>
+              <div class="panel-body">
+                <h3 class="project-title">{{= project.name in html}}</h3>
+                <div class="project-actions">{{if user then {{
+                  <form action="/api/hosts/{{= project.docker.host in uri}}/containers?project={{= id in id}}" class="ajax-form has-feedback is-submit" data-redirect-after-success="/containers/" method="put">
+                    <button class="btn btn-primary" title="Create a new container for this project" type="submit">New Container</button>
+                  </form>}} else {{
+                  <a class="btn btn-primary" href="/login">New Container</a>}}}}
+                </div>
+                <p class="project-description">{{= project.description in html}}</p>
+                <p class="project-updated">Built <time class="project-timestamp" data-timestamp="{{= project.data.updated in integer}}"></time>.</p>
+              </div>
+            </div>
+          </div>{{
+            }
+          }}
+        </div>
+      </div>
+    </section>

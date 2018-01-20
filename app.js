@@ -93,6 +93,12 @@ boot.executeInParallel([
     routes.landingPage(query.res, user);
   });
 
+  // new Public landing page.
+  app.route(/^\/new\/?$/, (data, match, end, query) => {
+    const { user } = query.req;
+    routes.newLandingPage(query.res, user);
+  });
+
   // Public API (when wrongly used with a trailing '/').
   app.route(/^\/api\/(.+)\/$/, (data, match, end, query) => {
     routes.redirect(query.res, '/api/' + match[1]);
